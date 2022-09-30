@@ -5,15 +5,16 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "rootDir": "./actions",
     "outDir": "dist",
-    "lib": ["esnext"],
-    "composite": true
+    "lib": ["es2015", "es2017", "es2020.string"],
+    "types": ["node"]
   },
-  "references": [
-    {
-      "path": "./tsconfig.build.json"
-    }
-  ],
-  "exclude": ["node_modules"]
+  "include": ["actions/**/*.ts"],
+  "exclude": ["actions/**/*.spec.ts", "node_modules"]
 }
