@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "outDir": "./dist",
+    "rootDir": "./actions",
     "module": "commonjs",
+    "target": "esnext",
+    "lib": ["es2015", "es2017", "es2020.string"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -9,12 +12,8 @@
     "noUnusedParameters": true,
     "noImplicitAny": true,
     "removeComments": false,
-    "preserveConstEnums": true,
-    "rootDir": "./actions",
-    "outDir": "dist",
-    "lib": ["es2015", "es2017", "es2020.string"],
-    "types": ["node"]
+    "preserveConstEnums": true
   },
   "include": ["actions/**/*.ts"],
-  "exclude": ["actions/**/*.spec.ts", "node_modules"]
+  "exclude": ["node_modules"]
 }

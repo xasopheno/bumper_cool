@@ -13,11 +13,13 @@ jobs:
       # - name: Setup yarn
         # run: npm install -g yarn
 
-      # - name: Install dependencies
-        # run: yarn
-      # - name: Build
-        # run: yarn build
+      # - uses: actions/setup-node@v3
+        # with:
+          # node-version: "16.x"
+          # cache: "yarn"
 
+      # - run: yarn install --frozen-lockfile
+      #
       - name: Hello world action step
         uses: ./actions
         id: hello
