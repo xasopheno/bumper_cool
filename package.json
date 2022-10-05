@@ -2,6 +2,7 @@
   "scripts": {
     "prebuild": "rm -rf ./dist",
     "build": "ncc build actions/index.ts -o dist --source-map",
+    "test": "tsc --sourceMap && ava",
     "act": "yarn build && act"
   },
   "dependencies": {
