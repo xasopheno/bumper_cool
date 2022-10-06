@@ -48,18 +48,18 @@ export function replaceFields(
   let newContent = oldContent
   for (const [field, value] of replacements) {
     newContent = newContent.replace(
-      new RegExp(`^(\\s*)${field}((?::| *=>)? *)(['"])([^'"]+)\\3`, 'm'),
+      new RegExp(`^(\\s*)${field}((?::| *=>)? *)v([^'"]+)([^'"]+)\\3\n`, 'm'),
       (
         _: string,
         indent: string,
         sep: string,
-        q: string,
+        // q: string,
         old: string
       ): string => {
-        if (field == 'version') assertNewer(value, old)
+        if (field == 'pkgver=') assertNewer(value, old)
         // else if (field == 'url' && !value.endsWith('.git'))
         // assertNewer(fromUrl(value), fromUrl(old))
-        return `${indent}${field}${sep}${q}${escape(value, q)}${q}`
+        return `${indent}${field}${value}\n`
       }
     )
   }

@@ -3,18 +3,18 @@ import { replaceFields } from './replace'
 
 test('replaceFields()', (t) => {
   const input = `
-    tag: 'v0.9.0',
-    revision => "OLDREV"
-`
+    pkgname=weresocool
+    pkgver=v0.9.0
+    pkgrel=1
+  `
   const expected = `
-    tag: 'v0.11.1',
-    revision => "NEWREV"
-`
+    pkgname=weresocool
+    pkgver=v0.11.1
+    pkgrel=1
+  `
 
   const replacements = new Map<string, string>()
-  replacements.set('url', 'https://github.com/cli/cli.git')
-  replacements.set('tag', 'v0.11.1')
-  replacements.set('revision', 'NEWREV')
+  replacements.set('pkgver=', 'v0.11.1')
 
   t.is(replaceFields(input, replacements), expected)
 })
