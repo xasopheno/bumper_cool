@@ -64,16 +64,16 @@ export async function prepareEdit(
       return ref.replace('refs/tags/', '')
     })(ctx.ref)
 
-  const [owner, repo] = getInput('homebrew-tap', { required: true }).split('/')
+  const [owner, repo] = getInput('package-repo', { required: true }).split('/')
   let pushTo: { owner: string; repo: string } | undefined
   const pushToSpec = getInput('push-to')
   if (pushToSpec) {
     const [pushToOwner, pushToRepo] = pushToSpec.split('/')
     pushTo = { owner: pushToOwner, repo: pushToRepo }
   }
-  const formulaName = getInput('formula-name') || ctx.repo.repo.toLowerCase()
+  const formulaName = getInput('package-name') || ctx.repo.repo.toLowerCase()
   const branch = getInput('base-branch')
-  const filePath = getInput('formula-path') || `Formula/${formulaName}.rb`
+  const filePath = getInput('pkgbuild-path') || `Formula/${formulaName}.rb`
   const version = tagName.replace(/^v(\d)/, '$1')
   const downloadUrl =
     getInput('download-url') ||
