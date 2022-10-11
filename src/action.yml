@@ -17,7 +17,7 @@ description: "Bump AUR package after a new release"
 author: "@xasopheno"
 runs:
   using: node16
-  main: "./dist/index.js"
+  main: "../dist/index.js"
 inputs:
   package-name:
     description: The name of the AUR package (defaults to lower-cased repository name)

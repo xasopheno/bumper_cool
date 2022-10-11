@@ -10,21 +10,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Setup yarn
-        # run: npm install -g yarn
+      - name: Setup yarn
+        run: npm install -g yarn
 
-      # - uses: actions/setup-node@v3
-        # with:
-          # node-version: "16.x"
-          # cache: "yarn"
-
-      # - run: yarn install --frozen-lockfile
-      #
-      - name: Hello world action step
-        uses: ./actions
-        id: hello
+      - uses: actions/setup-node@v3
         with:
-          who-to-greet: 'Mona the Octocat'
+          node-version: "16.x"
+          cache: "yarn"
+
+      - run: yarn install --frozen-lockfile
+      #
+      - name: Bumper Cool
+        uses: ./src
+        # if: "!contains(github.ref, '-')"
+        env:
+          COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
+        with:
+          base-branch: main
+          formula-name: weresocool
+          create-pullrequest: true
+          pkgbuild-tap: xasopheno/aur-weresocool
+          tag-name: ${{ steps.extract-version.outputs.tag-name }}
 
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
