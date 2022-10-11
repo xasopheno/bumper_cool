@@ -3,7 +3,7 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Bump aur-weresocool
     steps:
       # To use this repository's private action,
       # you must check out the repository
@@ -19,7 +19,7 @@ jobs:
           cache: "yarn"
 
       - run: yarn install --frozen-lockfile
-      #
+      
       - name: Bumper Cool
         uses: ./src
         # if: "!contains(github.ref, '-')"
@@ -31,7 +31,3 @@ jobs:
           create-pullrequest: true
           pkgbuild-tap: xasopheno/aur-weresocool
           tag-name: ${{ steps.extract-version.outputs.tag-name }}
-
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
-
